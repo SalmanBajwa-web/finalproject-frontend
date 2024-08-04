@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link"
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -18,94 +18,11 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-import { useGlobalContext } from '@/components/hook/Context'
-
-import { User2Icon } from "lucide-react"
- 
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "@/components/ui/alert"
-import { useState } from "react";
 
 
 
 
-
-
-export default function LoginComponent() {
-  const router = useRouter();
-  const [err,setErr]=useState(false);
-  const {
-    user, setUser,
-} = useGlobalContext();
-
-
-
-const createUser = ()=>{
-  const name = document.getElementById("first-name").value;
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  fetch('https://finalproject-backend-black.vercel.app/api/v1/userRoute/signUp',{
-    method:'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      credentials: 'include',
-    },
-    body:JSON.stringify({name,email,password,passwordConfirm:password})
-  })
-  .then(item=>item.json())
-  .then(item=>{
-    setUser(item);
-    console.log("createUser userRoute :",item);
-
-
-  })
-  .catch(err=>{
-    console.log("createUser Error :",err)
-  })
-
-
-}
-
-
-
-const login = ()=>{
-  const email = document.getElementById("login_email").value;
-  const password = document.getElementById("login_password").value;
-
-  fetch('https://finalproject-backend-black.vercel.app/api/v1/userRoute/logIn',{
-    method:'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      credentials: 'include',
-    },
-    body:JSON.stringify({email,password,passwordConfirm:password})
-  })
-  .then(item=>item.json())
-  .then(item=>{
-    console.log("login :",item);
-    if(item.status === 'fail'){
-      setErr(true);
-      return ;
-    }
-    setUser(item);
-    if(item.data.data.role==='admin'){
-        router.push('/admin');
-    }else{
-      router.push('/userpage');
-    }
-
-  })
-  .catch(err=>{
-    console.log("login Error :",err)
-  })
-
-  
-}
-
+export default function User() {
 
 
 
@@ -122,16 +39,6 @@ const login = ()=>{
       <TabsContent value="account">
       <Card className="mx-auto max-w-sm">
       <CardHeader>
-      {err&&(
-  <Alert variant='destructive'>
-  <User2Icon className="h-4 w-4 " />
-  <AlertTitle className=''>User name or email incorrect</AlertTitle>
-  <AlertDescription className="">
-  Please try again
-  </AlertDescription>
-</Alert>
-)}
-      
         <CardTitle className="text-2xl">Login</CardTitle>
         <CardDescription>
           Enter your email below to login to your account
@@ -176,20 +83,6 @@ const login = ()=>{
       <TabsContent value="password">
       <Card className="mx-auto max-w-sm">
       <CardHeader>
-
-{user.data&&(
-  <Alert variant='success'>
-  <User2Icon className="h-4 w-4 text-green-600" />
-  <AlertTitle className='text-green-800'>User Created</AlertTitle>
-  <AlertDescription className="text-green-700">
-  Now login in login Tab !
-  </AlertDescription>
-</Alert>
-)}
-      
-
-   
-
         <CardTitle className="text-xl">Sign Up</CardTitle>
         <CardDescription>
           Enter your information to create an account
@@ -238,8 +131,3 @@ const login = ()=>{
     </div>
   )
 }
-
-
-
-
-
