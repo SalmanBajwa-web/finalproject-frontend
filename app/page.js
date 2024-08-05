@@ -151,9 +151,7 @@ const login = ()=>{
           <div className="grid gap-2">
             <div className="flex items-center">
               <Label htmlFor="password">Password</Label>
-              <Link href="#" className="ml-auto inline-block text-sm underline">
-                Forgot your password?
-              </Link>
+            
             </div>
             <Input id="login_password" type="password" required />
           </div>
@@ -163,10 +161,7 @@ const login = ()=>{
          
         </div>
         <div className="mt-4 text-center text-sm">
-          Don&apos;t have an account?{" "}
-          <Link href="#" className="underline">
-            Sign up
-          </Link>
+         
         </div>
       </CardContent>
     </Card>
@@ -220,15 +215,10 @@ const login = ()=>{
           <Button type="submit" onClick={createUser} className="w-full">
             Create an account
           </Button>
-          <Button variant="outline" className="w-full">
-            Sign up with GitHub
-          </Button>
+         
         </div>
         <div className="mt-4 text-center text-sm">
-          Already have an account?{" "}
-          <Link href="#" className="underline">
-            Sign in
-          </Link>
+          
         </div>
       </CardContent>
     </Card>
