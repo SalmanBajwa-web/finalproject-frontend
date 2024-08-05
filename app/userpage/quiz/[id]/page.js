@@ -481,7 +481,7 @@ export default function Dashboard({ params }) {
                               </DropdownMenuContent>
                             </DropdownMenu> */}
                             <div className="outerBox flex justify-center items-center">
-                            <Image src={GifTimer} width={70} height={70} />
+                            <Image alt="good" src={GifTimer} width={70} height={70} />
                             <p className="font-bold text-lg ml-2">Time: {timeLeft}</p>
                             </div>
                           </TableCell>
