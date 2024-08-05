@@ -1,6 +1,8 @@
 "use client";
 // import { useParams } from 'next/router';
 import Link from "next/link";
+import GifTimer from "@/public/timer.gif";
+
 import {
   Activity,
   ArrowUpRight,
@@ -404,7 +406,7 @@ export default function Dashboard({ params }) {
                 </CardHeader>
                 <CardContent>
                   <Table>
-                    <TableHeader>
+                    {/* <TableHeader>
                       <TableRow>
                         <TableHead className="hidden w-[100px] sm:table-cell">
                           <span className="sr-only">Image</span>
@@ -424,7 +426,7 @@ export default function Dashboard({ params }) {
                           
                         </TableHead>
                       </TableRow>
-                    </TableHeader>
+                    </TableHeader> */}
                       {/* {questionByGroup[id]?.map((item,key)=>{ */}
 
                       {questions.map((item,key)=>{
@@ -436,7 +438,7 @@ export default function Dashboard({ params }) {
                           {/* {key} */}
                           </TableCell>
                           <TableCell className="font-medium">
-                            {item.question}
+                            <p className="text-lg font-bold" >{item.question}</p>
                           </TableCell>
                           <TableCell className=''>
                           {/* {item.choice.map(item=>{ */}
@@ -478,7 +480,10 @@ export default function Dashboard({ params }) {
                                 <DropdownMenuItem onClick={()=>deleteQuestion(item._id)}>Delete</DropdownMenuItem>
                               </DropdownMenuContent>
                             </DropdownMenu> */}
-                            <p className="font-bold">TimeLeft: {timeLeft}</p>
+                            <div className="outerBox flex justify-center items-center">
+                            <Image src={GifTimer} width={70} height={70} />
+                            <p className="font-bold text-lg ml-2">Time: {timeLeft}</p>
+                            </div>
                           </TableCell>
                         </TableRow>
 
@@ -488,14 +493,18 @@ export default function Dashboard({ params }) {
                           </TableCell>
                           {/* {item.choice.map(item=>{ */}
 
-                         
+                        
                           {item.choice.map((item,key)=>{
                             // console.log("currentAnswer :",currentAnswer," item:",item, currentAnswer===item)
                             return(
+                              <TableRow className={``}  >
                               <TableCell  className="hidden md:table-cell" key={"abc"+item} >
-                            <Badge className='p-3' onClick={()=>selectAnswer(item)} variant={`${currentAnswer === item && '' }`} >{key+1}:  {item}</Badge>
+                            <Badge className='p-3 cursor-pointer' onClick={()=>selectAnswer(item)} variant={`${currentAnswer === item && '' }`} >
+                              <p className=' tracking-wider text-base ' >{key+1}:  {item}</p>
+                            </Badge>
                         
                             </TableCell>
+                                  </TableRow>
                             );
                           })}
                         
