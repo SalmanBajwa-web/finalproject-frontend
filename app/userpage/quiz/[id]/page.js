@@ -497,8 +497,8 @@ export default function Dashboard({ params }) {
                           {item.choice.map((item,key)=>{
                             // console.log("currentAnswer :",currentAnswer," item:",item, currentAnswer===item)
                             return(
-                              <TableRow className={``}  >
-                              <TableCell  className="hidden md:table-cell" key={"abc"+item} >
+                              <TableRow className={``}  key={"abc"+item}>
+                              <TableCell  className="hidden md:table-cell"  >
                             <Badge className='p-3 cursor-pointer' onClick={()=>selectAnswer(item)} variant={`${currentAnswer === item && '' }`} >
                               <p className=' tracking-wider text-base ' >{key+1}:  {item}</p>
                             </Badge>
